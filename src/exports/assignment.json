@@ -1,0 +1,65 @@
+{
+ "mssv": "202603068",
+ "ten": "BuiCongDat",
+ "pool_version": "d04-k5-v2",
+ "cvat_user": "datco",
+ "project": "d04-keypoint",
+ "persons": [
+  "000000027565.jpg",
+  "000000072098.jpg",
+  "000000150500.jpg",
+  "000000292999.jpg",
+  "000000451084.jpg",
+  "000000078170.jpg",
+  "000000147780.jpg",
+  "000000469061.jpg",
+  "000000069971.jpg",
+  "000000518966.jpg",
+  "000000253584.jpg",
+  "000000332273.jpg"
+ ],
+ "faces": [
+  "face_122747.jpg",
+  "face_204787.jpg",
+  "face_559185.jpg",
+  "face_436791.jpg",
+  "face_442231.jpg",
+  "face_186226.jpg",
+  "face_99874.jpg",
+  "face_560526.jpg"
+ ],
+ "tasks": {
+  "persons": {
+   "task_id": 47,
+   "job_id": 47,
+   "task_name": "persons-BuiCongDat"
+  },
+  "faces": {
+   "task_id": 48,
+   "job_id": 48,
+   "task_name": "faces-BuiCongDat"
+  },
+  "persons-extra": {
+   "task_id": 49,
+   "job_id": 49,
+   "task_name": "persons-extra-BuiCongDat"
+  },
+  "faces-extra": {
+   "task_id": 50,
+   "job_id": 50,
+   "task_name": "faces-extra-BuiCongDat"
+  }
+ },
+ "persons_extra": [
+  "000000196853.jpg",
+  "000000323525.jpg",
+  "000000337458.jpg"
+ ],
+ "faces_extra": [
+  "face_102517.jpg",
+  "face_274219.jpg",
+  "face_280788.jpg",
+  "face_344941.jpg",
+  "face_507166.jpg"
+ ]
+}
