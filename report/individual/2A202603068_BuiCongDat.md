@@ -8,7 +8,7 @@ Dữ liệu: 12 ảnh người COCO val2017 (Lin et al., 2014) và 8 ảnh chân
 - MSSV: 2A202603068
 - MSSV ghi trong `src/exports/assignment.json`: 202603068 (giữ nguyên sau `lab.py setup`; file này là căn cứ để tính lại bộ ảnh khi chấm)
 - Email: datcongh43@gmail.com
-- Link repository: https://github.com/BuiCongDat2905/K5-L2-DAY04-BuiCongDat-2A202603068-KeypointPose-Student.git
+- Link repository: https://github.com/BuiCongDat2905/K5-L2-DAY04-BuiCongDat-2A202603068-KeypointPose.git
 - Phiên bản CVAT (Help → About): Server 2.74.1 · UI 2.74.1
 - Máy: Windows 11 · RAM 16 GB · chạy CVAT chế độ đầy đủ
 - Bộ ảnh (`src/exports/assignment.json` do `lab.py setup` tạo): có — 12 ảnh người (5 `easy`, 3 `occluded`, 2 `back`, 1 `small`, 1 `crowd`) + 8 ảnh mặt
