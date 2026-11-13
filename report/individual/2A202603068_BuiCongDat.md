@@ -105,6 +105,21 @@ Hai job đã chuyển sang completed trên CVAT? **Có** — cả 4 job (2 job c
 Dán phần **TÓM TẮT** in ra từ `src/check_submission.py`:
 
 ```text
+== Xuất COCO Keypoints 1.0
+  [OK] src\exports\BuiCongDat_persons.zip
+  [OK] src\exports\BuiCongDat_faces.zip
+  [OK] src\exports\BuiCongDat_bonus_persons.zip
+  [OK] src\exports\BuiCongDat_bonus_faces.zip
+
+== Tự kiểm (src/check_submission.py)
+
+=== D:\AI20KK\K5-L2-DAY04-BuiCongDat-2A202603068-KeypointPose-Student\src\exports\BuiCongDat_persons.zip (label `person`) ===
+  [CẢNH BÁO] 000000292999.jpg #1: cặp elbow nằm ngược phía so với các cặp còn lại. Có thể đổi trái/phải một cặp (`lr_swap`), hoặc tay / chân bắt chéo thật: kiểm lại.
+  [CẢNH BÁO] 000000332273.jpg #1: cặp ankle nằm ngược phía so với các cặp còn lại. Có thể đổi trái/phải một cặp (`lr_swap`), hoặc tay / chân bắt chéo thật: kiểm lại.
+
+=== D:\AI20KK\K5-L2-DAY04-BuiCongDat-2A202603068-KeypointPose-Student\src\exports\BuiCongDat_faces.zip (label `face`) ===
+
+----- TÓM TẮT (dán vào báo cáo mục 5) -----
 - File person: BuiCongDat_persons.zip
   Số ảnh: 12 · số skeleton `person`: 19 · mỗi annotation 51 số
   Skeleton theo ảnh: 000000027565=1, 000000069971=2, 000000072098=1, 000000078170=2, 000000147780=2, 000000150500=1, 000000253584=1, 000000292999=1, 000000332273=3, 000000451084=1, 000000469061=2, 000000518966=2
@@ -169,7 +184,36 @@ Nguồn ảnh: COCO val2017 / Wikimedia Commons.
 
 ## Bonus (nếu làm)
 
-Không nộp bonus: task bonus mới gán được 1/3 ảnh người (`persons-extra`) và 1/5 ảnh mặt (`faces-extra`), chưa đủ điều kiện tính điểm bonus.
+Đã làm bonus B1 và B2 trên hai task `persons-extra-BuiCongDat` và `faces-extra-BuiCongDat`; cả hai file export đều kiểm ra `Kết quả: ĐẠT`.
+
+### B1 — 3 ảnh người khó thêm
+
+| Ảnh | Số skeleton | Số người dưới 60 px | Ca khó nhất |
+|---|---:|---:|---|
+| `000000196853.jpg` | 3 | 0 | Người thứ ba quay lưng ở phía sau, thân dưới bị người phía trước che; phải bật `occluded` cho hông/gối/cổ chân. |
+| `000000323525.jpg` | 3 | 0 | Cả ảnh nằm sau lưới chắn (net) nên chi tiết mờ; batter ở xa, catcher nhỏ (~69 px) nên khó đặt cổ chân/đầu gối. |
+| `000000337458.jpg` | 3 | 0 | Người đi bộ ở góc trên bên phải rất xa (~67 px); người trong cabin máy bị khung máy che một phần. |
+
+Kết quả `src/check_submission.py` cho `HoVaTen_bonus_persons.zip`:
+
+```text
+- File person: BuiCongDat_bonus_persons.zip
+  Số ảnh: 3 · số skeleton `person`: 9 · mỗi annotation 51 số
+  Skeleton theo ảnh: 000000196853=3, 000000323525=3, 000000337458=3
+  Cờ v: v=2 93 (61%) · v=1 14 (9%) · v=0 46 (30%)
+  num_keypoints trung bình: 11.9
+- Ghi chú: 46 điểm v = 0 vẫn mang tọa độ cũ (CVAT 2.x xuất như vậy; chuẩn COCO ghi 0, 0). Không phải lỗi: điểm v = 0 bị bỏ qua khi huấn luyện và khi chấm.
+- Số [LỖI]: 0 · số [CẢNH BÁO]: 0
+Kết quả: ĐẠT
+```
+
+### B2 — 5 ảnh khuôn mặt đen trắng / hồng ngoại
+
+Ảnh không màu khó hơn ở điểm nào? Kính râm trên ảnh hồng ngoại có còn là `v = 1` không?
+
+5 ảnh bonus đều là **ảnh đen trắng**, trong đó có một ảnh đeo kính gọng đen nhưng tròng trong (vẫn thấy rõ mắt). Ảnh không màu khó hơn ở chỗ mất tương phản giữa mí mắt với da và mất thông tin màu để phân biệt môi trên/môi dưới, khóe miệng; ảnh scan còn nhiễu hạt nên phải zoom cao và dựa vào sáng-tối cục bộ. Vì không có tròng kính tối che mắt nên cả 65 điểm trên 5 ảnh đều `v = 2`, không có điểm mắt nào cần `v = 1`. Nếu là kính râm trên ảnh hồng ngoại thì 4 điểm mắt vẫn phải để `occluded` (`v = 1`) vì tròng kính vẫn che mắt, chỉ là ảnh không còn màu.
+
+Kết quả kiểm `HoVaTen_bonus_faces.zip`: `ĐẠT` — 5 ảnh, 5 skeleton, mỗi annotation 39 số, `v = 2` 65/65 điểm, 0 `[LỖI]`, 0 `[CẢNH BÁO]`.
 
 ## 9. Tài liệu tham khảo và công cụ AI đã dùng
 
